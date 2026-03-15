@@ -1,0 +1,36 @@
+table {border: 1px solid!important;}
+td{color: white!important;text-align: center!important;}
+th{text-align: center!important;}
+.desocultar{
+	display: none;
+}
+.color1{
+	background: #808080!important;
+	padding: 10px;
+	color: white!important;
+}
+.color2{
+	background: rgba(255, 255, 255, 0.15)!important;
+	padding: 10px;
+	color: white!important;
+}
+.ocultar1{
+	font-size: 14px!important;
+}
+.ocultar{
+	border: 1px solid white;border-bottom: 0px; color: white;
+	font-size: 12px;
+}
+@media(max-width: 1024px){
+	.font{
+		font-size: 10px;
+	}
+}
+@media(max-width: 512px){
+	.ocultar{
+		display: none;
+	}
+	.desocultar{
+		display: block;
+	}
+}
