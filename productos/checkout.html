@@ -445,7 +445,11 @@ font-size:14px;
 
 
 
-
+ <script>window.addEventListener("message", function(e){
+  if(e.data.type === "resize"){
+    document.getElementById("secureFrame").style.height = e.data.height + "px";
+  }
+});</script>
 
 <section style="height: 1000px;">
 
