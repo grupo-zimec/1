@@ -443,22 +443,23 @@ font-size:14px;
 
 
 
-
-
 <script>
 window.addEventListener("message",function(e){
 
 if(e.data.type==="resize"){
 
-document.getElementById("secureFrame").style.height =
-e.data.height + "px";
+const frame = document.getElementById("secureFrame");
+
+if(Math.abs(frame.offsetHeight - e.data.height) > 5){
+frame.style.height = e.data.height + "px";
+}
 
 }
 
 });
 </script>
 
-<section >
+<section>
 
 <iframe
 id="secureFrame"
@@ -470,23 +471,21 @@ sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-t
 const iframe = document.getElementById("secureFrame");
 const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi83L2FsbGEuaHRtbA==");
 
-// cargar url real directamente
 iframe.src = realURL;
 
-// escuchar onload UNA sola vez
 iframe.addEventListener("load", () => {
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  iframe.contentWindow.postMessage(
-    { type: "carrito", data: carrito },
-    "https://novie.in"
-  );
+const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  console.log("Carrito enviado:", carrito);
+iframe.contentWindow.postMessage(
+{ type:"carrito", data:carrito },
+"https://novie.in"
+);
+
 });
 </script>
-  </section>
 
+</section>
       
         <div class="page-section-content vc_row-fluid mk-grid " >
             <div class="mk-padding-wrapper wpb_row">
