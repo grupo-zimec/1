@@ -1653,12 +1653,6 @@ var LS_Meta = {"v":"6.8.4"};
  
 </div>
 <br>
-
-
- 
-
-	
-
 <div id="padding-30" class="mk-padding-divider jupiter-donut-  jupiter-donut-clearfix"></div>
 
 
@@ -2013,17 +2007,11 @@ Panel 3.6 m | 6 abrazaderas | Poste 3.0 m — $1,960
 </option>
 
 </select>
-
-
-
     <button class="add-to-cart btn btn-success btn-sm"
            >
       Agregar al carrito
     </button>
   </div>
-
-
-
 <br>
 	
 
@@ -2354,7 +2342,8 @@ const opcion = select.selectedOptions[0];
 const precio = parseFloat(opcion.dataset.precio) || 0;
 const nombre =
 opcion.dataset.nombre ||
-`${btn.dataset.nombre} ${opcion.textContent.trim()}`;
+btn.dataset.nombre ||
+opcion.value;
 const imagen =
 btn.dataset.imagen ||
 producto.querySelector('img')?.src ||
