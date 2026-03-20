@@ -447,12 +447,19 @@ font-size:14px;
 window.addEventListener("message", function(e){
 
   if(e.data.type === "resize"){
-
     const frame = document.getElementById("secureFrame");
 
-    // 🔴 SIEMPRE ajustar, incluso si es menor
-    frame.style.height = e.data.height + "px";
+    if(Math.abs(frame.offsetHeight - e.data.height) > 5){
+      frame.style.height = e.data.height + "px";
+    }
+  }
 
+  // 🔥 SCROLL REAL
+  if(e.data.type === "scrollTop"){
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
 });
