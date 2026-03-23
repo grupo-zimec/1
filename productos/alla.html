@@ -602,7 +602,7 @@ function generarClaveProducto(nombre, index) {
   }
 
   // Devuelve clave con número basado en index
-  return base + (index + 1);
+  return base;
 }
 
 /* ASIGNAR CLAVE A PRODUCTOS DEL CARRITO */
@@ -927,7 +927,7 @@ document.getElementById('checkout-form').addEventListener('submit', function(e){
 window.addEventListener("message", function(event) {
 
   // ACEPTAR SOLO MENSAJES DE TU GITHUB PAGES
-if (event.origin !== "https://grupo-zimec.github.io") {
+if (event.origin !== "https://grupo-simec.lat") {
     console.warn("Mensaje rechazado por origen desconocido:", event.origin);
     return;
   }
