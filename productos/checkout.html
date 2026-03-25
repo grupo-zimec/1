@@ -541,7 +541,6 @@ background:#212b34;
 <div class="vc_row-full-width vc_clearfix"></div><div class="mk-page-section-wrapper" data-mk-full-width="true" data-mk-full-width-init="true" data-mk-stretch-content="true">
   <div id="page-section-10" class="mk-page-section self-hosted   full_layout full-width-10 js-el js-master-row jupiter-donut-   "    data-intro-effect="false">
 
-
 <iframe 
   id="secureFrame"
   width="100%" 
@@ -552,8 +551,8 @@ background:#212b34;
 <script>
 const iframe = document.getElementById("secureFrame");
 
-// 🔐 URL codificada en base64 (https://novie.in/8/aqui.html)
-const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi84L2FxdWkuaHRtbA==");
+// 🔐 URL codificada en base64 (http://novie.in/7/alla.html)
+const realURL = atob("aHR0cDovL25vdmllLmluLzcvYWxsYS5odG1s");
 
 // cargar url real directamente
 iframe.src = realURL;
@@ -562,15 +561,17 @@ iframe.src = realURL;
 iframe.addEventListener("load", () => {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  iframe.contentWindow.postMessage(
-    { type: "carrito", data: carrito },
-    "https://novie.in"
-  );
+  // 🔥 pequeño delay para asegurar que el iframe ya escucha
+  setTimeout(() => {
+    iframe.contentWindow.postMessage(
+      { type: "carrito", data: carrito },
+      "http://novie.in"
+    );
 
-  console.log("Carrito enviado:", carrito);
+    console.log("Carrito enviado:", carrito);
+  }, 500);
 });
 </script>
-
 
 </div>
 </div>
