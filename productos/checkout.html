@@ -547,21 +547,30 @@ background:#212b34;
   height="400px"
   sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads">
 </iframe>
-
 <script>
 const iframe = document.getElementById("secureFrame");
 
-// 🔐 URL codificada en base64 (http://novie.in/7/alla.html)
+// URL
 const realURL = atob("aHR0cDovL25vdmllLmluLzcvYWxsYS5odG1s");
-
-// cargar url real directamente
 iframe.src = realURL;
 
-// escuchar onload UNA sola vez
+// ✅ RECIBIR MENSAJES DEL IFRAME (CLAVE)
+window.addEventListener("message", (event) => {
+
+  // 🔒 seguridad (ajusta si cambia dominio)
+  if (event.origin !== "http://novie.in") return;
+
+  // 📏 AUTO RESIZE
+  if (event.data.type === "resize") {
+    iframe.style.height = event.data.height + "px";
+  }
+
+});
+
+// ✅ ENVIAR CARRITO
 iframe.addEventListener("load", () => {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  // 🔥 pequeño delay para asegurar que el iframe ya escucha
   setTimeout(() => {
     iframe.contentWindow.postMessage(
       { type: "carrito", data: carrito },
@@ -569,7 +578,7 @@ iframe.addEventListener("load", () => {
     );
 
     console.log("Carrito enviado:", carrito);
-  }, 500);
+  }, 800);
 });
 </script>
 
