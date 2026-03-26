@@ -541,6 +541,7 @@ background:#212b34;
 <div class="vc_row-full-width vc_clearfix"></div><div class="mk-page-section-wrapper" data-mk-full-width="true" data-mk-full-width-init="true" data-mk-stretch-content="true">
   <div id="page-section-10" class="mk-page-section self-hosted   full_layout full-width-10 js-el js-master-row jupiter-donut-   "    data-intro-effect="false">
 
+
 <iframe 
   id="secureFrame"
   width="100%" 
@@ -551,25 +552,34 @@ background:#212b34;
 <script>
 const iframe = document.getElementById("secureFrame");
 
-// 🔐 URL codificada (http://novie.in/7/alla.html)
+// 🔐 URL correcta codificada (https://novie.in/7/alla.html)
 const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi83L2FsbGEuaHRtbA==");
 
-// cargar url
 iframe.src = realURL;
 
-// enviar carrito al cargar
-iframe.addEventListener("load", () => {
+function enviarCarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   iframe.contentWindow.postMessage(
     { type: "carrito", data: carrito },
-    "http://novie.in"
+    "https://novie.in" // 🔥 IMPORTANTE: https
   );
 
   console.log("Carrito enviado:", carrito);
+}
+
+iframe.addEventListener("load", () => {
+  enviarCarrito();
+
+  // 🔁 asegurar entrega
+  setTimeout(enviarCarrito, 300);
+  setTimeout(enviarCarrito, 800);
 });
 </script>
 
+
+
+	  
 </div>
 </div>
   <div class="page-section-content vc_row-fluid mk-grid " >
